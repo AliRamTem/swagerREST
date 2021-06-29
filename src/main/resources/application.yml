@@ -6,3 +6,11 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
+jpa:
+  show-sql: true
+  database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+  properties:
+    hibernate:
+      types:
+        print:
+          banner: false

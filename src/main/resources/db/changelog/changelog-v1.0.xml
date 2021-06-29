@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
     <changeSet id="1" author="Ramazan">
-        <createTable tableName="users">
+        <createTable  remarks="Таблица пользователей" tableName="users_table">
             <column remarks="ID автоинкремент" autoIncrement="true" name="id" type="bigint">
                 <constraints primaryKey="true" />
             </column>
-            <column remarks="username" name="username" type="TEXT"/>
-            <column remarks="First name" name="first_name" type="TEXT"/>
-            <column remarks="Last name" name="last_name" type="TEXT"/>
-            <column remarks="Email" name="email" type="TEXT"/>
-            <column remarks="Description" name="description" type="TEXT"/>
+            <column remarks="username" name="username" type="character varying"/>
+            <column remarks="First name" name="first_name" type="character varying"/>
+            <column remarks="Last name" name="last_name" type="character varying"/>
+            <column remarks="Email" name="email" type="character varying"/>
+            <column remarks="Description" name="description" type="character varying"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

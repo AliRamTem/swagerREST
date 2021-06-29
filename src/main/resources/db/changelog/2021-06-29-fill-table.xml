@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="1" author="Ramazan">
+        <insert tableName="users_table">
+            <column name="username" value="firstUser"/>
+            <column name="first_name" value="firstName"/>
+            <column name="last_name" value="firstLastName"/>
+            <column name="email" value="first@gmail.com"/>
+            <column name="description" value="first user insert"/>
+        </insert>
+        <insert tableName="users_table">
+            <column name="username" value="secondUser"/>
+            <column name="first_name" value="secondName"/>
+            <column name="last_name" value="secondLastName"/>
+            <column name="email" value="second@gmail.com"/>
+            <column name="description" value="second user insert"/>
+        </insert>
+        <insert tableName="users_table">
+            <column name="username" value="thirdUser"/>
+            <column name="first_name" value="thirdName"/>
+            <column name="last_name" value="thirdLastName"/>
+            <column name="email" value="third@gmail.com"/>
+            <column name="description" value="third user insert"/>
+        </insert>
+        <insert tableName="users_table">
+            <column name="username" value="fourthUser"/>
+            <column name="first_name" value="fourthName"/>
+            <column name="last_name" value="fourthLastName"/>
+            <column name="email" value="fourth@gmail.com"/>
+            <column name="description" value="fourth user insert"/>
+        </insert>
+        <insert tableName="users_table">
+            <column name="username" value="fifthUser"/>
+            <column name="first_name" value="fifthName"/>
+            <column name="last_name" value="fifthLastName"/>
+            <column name="email" value="fifth@gmail.com"/>
+            <column name="description" value="fifth user insert"/>
+        </insert>
+        <insert tableName="users_table">
+            <column name="username" value="sixthUser"/>
+            <column name="first_name" value="sixthName"/>
+            <column name="last_name" value="sixthLastName"/>
+            <column name="email" value="sixth@gmail.com"/>
+            <column name="description" value="sixth user insert"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>

@@ -9,7 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users_table")
 @Getter
 @Setter
 @ToString
