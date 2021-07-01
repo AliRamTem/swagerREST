@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import ru.vtb.rama.generated.dto.ShortUserDto;
 import ru.vtb.rama.generated.dto.UserDto;
-import ru.vtb.rama.swagerrest.model.entity.User;
+import ru.vtb.rama.swagerrest.exception.EmptyVacationsListException;
+import ru.vtb.rama.swagerrest.model.User;
+import ru.vtb.rama.swagerrest.model.Vacation;
+
+import java.util.List;
 
 
 @Component
@@ -27,6 +31,11 @@ public class UserConverter {
     public User from(UserDto userdto) {
         User user = modelMapper.map(userdto, User.class);
         //user.getWebhookHeaders().forEach(webhookHeader -> webhookHeader.setWebhook(webhook));
+        List<Vacation> vacationsList = user.getVacationsList();
+        if(vacationsList.isEmpty()){
+            throw new EmptyVacationsListException();
+        }
+        vacationsList.forEach(vacation -> vacation.setUser(user));
         return user;
     }
 }

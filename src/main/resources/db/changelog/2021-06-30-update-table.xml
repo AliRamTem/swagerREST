@@ -1,0 +1,86 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="1" author="Ramazan">
+        <modifyDataType tableName="users_table" columnName="username" newDataType="TEXT"/>
+        <modifyDataType tableName="users_table" columnName="first_name" newDataType="TEXT"/>
+        <modifyDataType tableName="users_table" columnName="last_name" newDataType="TEXT"/>
+        <modifyDataType tableName="users_table" columnName="email" newDataType="TEXT"/>
+        <modifyDataType tableName="users_table" columnName="description" newDataType="TEXT"/>
+    </changeSet>
+    <changeSet id="2" author="Ramazan">
+        <setColumnRemarks tableName="users_table" columnName="username" remarks="Username пользователя"/>
+        <setColumnRemarks tableName="users_table" columnName="first_name" remarks="Имя пользователя"/>
+        <setColumnRemarks tableName="users_table" columnName="last_name" remarks="Фамилия пользователя"/>
+        <setColumnRemarks tableName="users_table" columnName="email" remarks="Почта пользователя"/>
+        <setColumnRemarks tableName="users_table" columnName="description" remarks="Описание пользователя"/>
+    </changeSet>
+    <changeSet id="3" author="Ramazan">
+        <addColumn tableName="users_table">
+            <column remarks="Флаг удаления" name="is_deleted" type="boolean"/>
+            <column remarks="Дата создания" name="date_created" type="timestamp"/>
+            <column remarks="Дата обновления" name="date_updated" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="4" author="Ramazan" >
+        <createTable remarks="Таблица отпусков " tableName="vacations">
+            <column remarks="ID автоинкремент" autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column remarks="Дата начала отпуска" name="from" type="timestamp"/>
+            <column remarks="Дата окончания отпуска" name="to" type="timestamp"/>
+            <column remarks="Внешний ключ с таблицей пользователей" name="user_id" type="bigint"/>
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="vacations"
+                baseColumnNames="user_id"
+                constraintName="fk_vacations_user_id"
+                referencedTableName="users_table"
+                referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="5" author="Ramazan">
+        <renameColumn tableName="vacations" oldColumnName="from" newColumnName="begin"/>
+        <renameColumn tableName="vacations" oldColumnName="to" newColumnName="end"/>
+        <addColumn tableName="vacations">
+            <column remarks="Дата создания" name="date_created" type="timestamp"
+                    defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column remarks="Дата обновления" name="date_updated" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="6" author="Ramazan">
+        <renameTable oldTableName="users_table" newTableName="users"/>
+    </changeSet>
+    <changeSet id="7" author="Ramazan">
+        <renameColumn tableName="users" oldColumnName="username" newColumnName="userName"/>
+    </changeSet>
+
+    <changeSet id="8" author="Ramazan" >
+        <insert tableName="vacations">
+            <column name="id" valueNumeric="1"/>
+            <column name="begin" valueDate="2020-07-01"/>
+            <column name="end" valueDate="2020-07-02"/>
+            <column name="user_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="vacations">
+            <column name="id" valueNumeric="2"/>
+            <column name="begin" valueDate="2020-07-01"/>
+            <column name="end" valueDate="2020-07-02"/>
+            <column name="user_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="vacations">
+            <column name="id" valueNumeric="3"/>
+            <column name="begin" valueDate="2020-07-01"/>
+            <column name="end" valueDate="2020-07-02"/>
+            <column name="user_id" valueNumeric="3"/>
+        </insert>
+        <insert tableName="vacations">
+            <column name="id" valueNumeric="4"/>
+            <column name="begin" valueDate="2020-07-01"/>
+            <column name="end" valueDate="2020-07-02"/>
+            <column name="user_id" valueNumeric="4"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

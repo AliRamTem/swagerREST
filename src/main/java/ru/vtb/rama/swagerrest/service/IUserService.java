@@ -2,18 +2,16 @@ package ru.vtb.rama.swagerrest.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import ru.vtb.rama.generated.dto.ShortUserDto;
-import ru.vtb.rama.generated.dto.UserDto;
-import ru.vtb.rama.swagerrest.exception.NoSuchUserException;
+import ru.vtb.rama.swagerrest.model.User;
 
 public interface IUserService {
-    Page<ShortUserDto> list(Pageable pageable, String search);
+    Page<User> list(Pageable pageable, String search);
 
-    UserDto findById(Long id) throws NoSuchUserException;
+    User findById(Long id);
 
-    UserDto create(UserDto userDto);
+    User create(User user);
 
-    UserDto update(Long id, UserDto userDto) throws NoSuchUserException;
+    User update(Long id, User user);
 
-    void delete(Long id) throws NoSuchUserException;
+    void delete(Long id);
 }

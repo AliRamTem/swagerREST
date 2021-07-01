@@ -1,4 +1,7 @@
 spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: non_null
   datasource:
     url: jdbc:postgresql://localhost:5432/users
     username: root
@@ -6,11 +9,13 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
-jpa:
-  show-sql: true
-  database-platform: org.hibernate.dialect.PostgreSQL94Dialect
-  properties:
-    hibernate:
-      types:
-        print:
-          banner: false
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    properties:
+      hibernate:
+        types:
+          print:
+            banner: false
+    show-sql: true
+    open-in-view: false

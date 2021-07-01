@@ -207,7 +207,7 @@
                         <configuration>
                             <language>spring</language>
                             <output>${project.basedir}/target/generated-sources/</output>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi.yaml
+                            <inputSpec>${project.basedir}/src/main/resources/users/openapi.yaml
                             </inputSpec>
                             <modelPackage>ru.vtb.rama.generated.dto</modelPackage>
                             <generateApis>false</generateApis>
@@ -219,6 +219,30 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.mysema.maven</groupId>
+                <artifactId>apt-maven-plugin</artifactId>
+                <version>${apt-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-sources/src/main/java</outputDirectory>
+                            <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.querydsl</groupId>
+                        <artifactId>querydsl-apt</artifactId>
+                        <version>${querydsl.version}</version>
+                        <classifier>jpa</classifier>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
