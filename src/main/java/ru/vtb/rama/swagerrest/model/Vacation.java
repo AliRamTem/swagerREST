@@ -17,10 +17,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Vacation extends BaseEntity {
 
-    @Column(name = "begin")
+    @Column(name = "begin_date")
     private LocalDate begin;
 
-    @Column(name = "end")
+    @Column(name = "end_date")
     private LocalDate end;
 
     @ManyToOne

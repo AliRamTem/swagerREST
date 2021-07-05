@@ -11,6 +11,7 @@ import ru.vtb.rama.swagerrest.model.User;
 import ru.vtb.rama.swagerrest.model.Vacation;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Component
@@ -30,12 +31,13 @@ public class UserConverter {
 
     public User from(UserDto userdto) {
         User user = modelMapper.map(userdto, User.class);
-        //user.getWebhookHeaders().forEach(webhookHeader -> webhookHeader.setWebhook(webhook));
-        List<Vacation> vacationsList = user.getVacationsList();
-        if(vacationsList.isEmpty()){
+        user.getVacationsList().forEach(list -> list.setUser(user));
+        /*List<Vacation> vacationsList = user.getVacationsList();
+        if(Objects.isNull(vacationsList)){
             throw new EmptyVacationsListException();
         }
-        vacationsList.forEach(vacation -> vacation.setUser(user));
+        vacationsList.forEach(vacation -> vacation.setUser(user));*/
+
         return user;
     }
 }

@@ -3,7 +3,7 @@ package ru.vtb.rama.swagerrest.model;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import ru.vtb.rama.swagerrest.model.base.BaseDeleteNamedEntity;
+import ru.vtb.rama.swagerrest.model.base.BaseDeleteEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,10 +14,10 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends BaseDeleteNamedEntity {
+public class User extends BaseDeleteEntity {
 
 
-    @Column(name = "userName")
+    @Column(name = "user_name")
     private String userName;
 
     @Column(name = "first_name")

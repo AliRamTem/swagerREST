@@ -83,4 +83,11 @@
             <column name="user_id" valueNumeric="4"/>
         </insert>
     </changeSet>
+    <changeSet id="9" author="ramazan">
+        <renameColumn tableName="users" oldColumnName="userName" newColumnName="user_name"/>
+    </changeSet>
+    <changeSet id="10" author="ramazan">
+        <renameColumn tableName="vacations" oldColumnName="begin" newColumnName="begin_date"/>
+        <renameColumn tableName="vacations" oldColumnName="end" newColumnName="end_date"/>
+    </changeSet>
 </databaseChangeLog>

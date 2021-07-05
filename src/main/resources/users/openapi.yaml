@@ -19,35 +19,35 @@ paths:
       operationId: getUser
       parameters:
         - name: search
-          in: path
+          in: query
           description: Поисковое условие
           required: false
           schema:
             type: string
           example: Наименование пользователя
         - name: page
-          in: path
+          in: query
           description: Номер страницы
           required: false
           schema:
             type: integer
           example: 0
         - name: size
-          in: path
+          in: query
           description: Размер страницы
           required: false
           schema:
             type: integer
           example: 20
       responses:
-        default:
-          description: successful operation
+        '200':
+          description: Gets an array of users
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShortUserDto'
+                $ref: '#/components/schemas/UsersListResponse'
+        "500":
+          description: Internal Server Error
     post:
       tags:
         - user
@@ -55,8 +55,12 @@ paths:
       description: This can only be done by the logged in user.
       operationId: createUser
       responses:
-        default:
-          description: successful operation
+        '200':
+          description: Returns a copy of created user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDTO'
       requestBody:
         content:
           application/json:
@@ -107,8 +111,8 @@ paths:
             type: integer
             format: int64
       responses:
-        '405':
-          description: Invalid input
+        default:
+          description: successful operation
       requestBody:
         content:
           application/json:
@@ -170,7 +174,7 @@ components:
           type: integer
           description: user`s id
           format: int64
-        username:
+        userName:
           type: string
           description: user`s username
           minLength: 3
@@ -199,6 +203,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VacationDTO'
+          required: true
       xml:
         name: User
     ShortUserDto:
@@ -208,7 +213,7 @@ components:
           type: integer
           description: user`s id
           format: int64
-        username:
+        userName:
           type: string
           description: user`s username
           minLength: 3
@@ -228,6 +233,8 @@ components:
           description: user`s email
           minLength: 3
           maxLength: 30
+      required:
+        -username
       xml:
         name: User
     VacationDTO:
@@ -237,21 +244,9 @@ components:
           type: integer
           format: int64
           minimum: 0
-          readOnly: true
-        from:
+        beginDate:
           type: string
           format: date
-        to:
+        endDate:
           type: string
           format: date
-  requestBodies:
-    User:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserDto'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/UserDto'
-      description: User object that needs to be added
-      required: true

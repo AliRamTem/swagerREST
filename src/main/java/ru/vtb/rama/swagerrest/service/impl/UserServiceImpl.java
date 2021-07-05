@@ -27,16 +27,16 @@ public class UserServiceImpl extends AbstractBaseService<User, Long, QUser, User
     @Override
     public Page<User> list(Pageable pageable, String search) {
         BooleanBuilder booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(QUser.user.deleted.isFalse());
+        booleanBuilder.and(QUser.user.isDeleted.isFalse());
         return findAll(booleanBuilder, pageable);
     }
 
     @Override
     public User findById(Long id){
         BooleanBuilder booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(QUser.user.deleted.isFalse());
+        booleanBuilder.and(QUser.user.isDeleted.isFalse());
         booleanBuilder.and(QUser.user.id.eq(id));
-        return get(id).orElseThrow(() -> new NoSuchUserException(id));
+        return get(booleanBuilder).orElseThrow(() -> new NoSuchUserException(id));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class UserServiceImpl extends AbstractBaseService<User, Long, QUser, User
     @Override
     public User update(Long id, User user) {
         BooleanBuilder booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(QUser.user.deleted.isFalse());
+        booleanBuilder.and(QUser.user.isDeleted.isFalse());
         booleanBuilder.and(QUser.user.id.eq(id));
         User oldUser = get(booleanBuilder).orElseThrow(() -> new NoSuchUserException(id));
         user.setId(id);
@@ -58,7 +58,7 @@ public class UserServiceImpl extends AbstractBaseService<User, Long, QUser, User
     @Override
     public void delete(Long id) {
         BooleanBuilder booleanBuilder = new BooleanBuilder();
-        booleanBuilder.and(QUser.user.deleted.isFalse());
+        booleanBuilder.and(QUser.user.isDeleted.isFalse());
         booleanBuilder.and(QUser.user.id.eq(id));
         User user = get(booleanBuilder).orElseThrow(() -> new NoSuchUserException(id));
         user.setDeleted(true);
