@@ -90,4 +90,8 @@
         <renameColumn tableName="vacations" oldColumnName="begin" newColumnName="begin_date"/>
         <renameColumn tableName="vacations" oldColumnName="end" newColumnName="end_date"/>
     </changeSet>
+    <changeSet id="11" author="ramazan">
+        <dropColumn tableName="vacations" columnName="date_created"/>
+        <dropColumn tableName="vacations" columnName="date_updated"/>
+    </changeSet>
 </databaseChangeLog>
